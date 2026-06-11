@@ -62,14 +62,21 @@ After install, reload plugins in your current session:
 ```
 Needs Your Response (newest first)
 
-| Document              | Who            | What they need              | Date   | Link |
-|-----------------------|----------------|-----------------------------|--------|------|
-| CPQ End of Sale v2    | Annie Wright   | "does this sound correct?"  | Jun 10 | ...  |
-| module-2-v2.md        | Ashley Shults  | "Did you say not to mention | May 15 | ...  |
-|                       |                |  Stripe?"                   |        |      |
+| # | Document          | Who          | What they need             | Date   | Link                        |
+|---|-------------------|--------------|----------------------------|--------|-----------------------------|
+| 1 | Q4 Launch Plan    | Jane D.      | "Can you confirm the date?"| Jun 10 | [Open](https://docs.go...) |
+| 2 | Pricing Model v3  | Alex M.      | "Is this the right tier?"  | Jun 08 | [Open](https://docs.go...) |
+| 3 | Partner Deck      | Sam R.       | "Add your slide by Friday" | May 29 | [Open](https://docs.go...) |
 
-Summary: 11 threads need your response across 8 documents.
-2 threads are open but you already replied.
+You Replied But Thread Still Open
+
+| # | Document          | Who          | Status                     | Date   | Link                        |
+|---|-------------------|--------------|----------------------------|--------|-----------------------------|
+| 1 | API Design Doc    | Chris T.     | You replied "yes" — still  | Jun 05 | [Open](https://docs.go...) |
+|   |                   |              | open                       |        |                             |
+
+Summary: 3 threads need your response across 3 documents.
+1 thread is open but you already replied.
 ```
 
 ## Sharing
