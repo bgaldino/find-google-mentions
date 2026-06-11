@@ -1,4 +1,9 @@
 {
+  "name": "bgaldino-find-google-mentions",
+  "owner": {
+    "name": "Brian Galdino",
+    "url": "https://github.com/bgaldino"
+  },
   "plugins": [
     {
       "name": "find-google-mentions",

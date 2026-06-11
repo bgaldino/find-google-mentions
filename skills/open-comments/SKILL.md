@@ -26,11 +26,14 @@ Gmail: Google sends a notification email for every @mention from
    from:comments-noreply@docs.google.com newer_than:{DAYS}d
    ```
    Use `search_gmail_messages` with `page_size: 25`. Keep calling with the
-   returned `page_token` until no more results.
+   returned `page_token` until no more results. Collect ALL message IDs into
+   a single list BEFORE fetching content.
 
 2. **Batch-fetch bodies** — call `get_gmail_messages_content_batch` with
    **`format: "full"`** (NEVER "metadata" — you need the body to extract links).
-   Max 25 IDs per call. From each email body, extract:
+   Use the FULL 25-per-call capacity. If you have 26+ messages, use exactly 2
+   calls (first 25, then the remainder). Do NOT split into smaller batches.
+   From each email body, extract:
    - **Document ID** — from the URL pattern:
      - `docs.google.com/document/d/{ID}/...`
      - `docs.google.com/spreadsheets/d/{ID}/...`
