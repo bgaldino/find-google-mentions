@@ -40,7 +40,16 @@ Gmail: Google sends a notification email for every @mention from
    - **Comment snippet** — the text around the @mention
    - **Doc type** — `document`, `spreadsheet`, or `presentation`
 
-3. **Deduplicate** by document ID. You now have the unique set of docs that
+3. **Extract comment-thread deep links** — the notification email body contains
+   a direct URL to the specific comment discussion thread (the `disco=` parameter
+   URL). Capture this per-notification. The pattern is:
+   ```
+   https://docs.google.com/{type}/d/{ID}/edit?disco={COMMENT_ID}&usp=comment_email_discussion...
+   ```
+   This is the **Link** column value in the report — it takes the user straight
+   to the thread, not just the document.
+
+4. **Deduplicate** by document ID. You now have the unique set of docs that
    @mentioned you in the time window.
 
 ### Phase 2 — Check resolution status
@@ -70,16 +79,25 @@ Present results in two sections:
 **Needs Your Response** — unresolved threads where you have NOT replied.
 Sort newest first.
 
-| Document | Who | What they need | Date | Link |
-|----------|-----|----------------|------|------|
+| # | Document | Who | What they need | Date | Link |
+|---|----------|-----|----------------|------|------|
+
+The **Link** column MUST be a clickable markdown link pointing to the comment
+thread deep link (the `disco=` URL extracted from the notification email).
+Format: `[Open](https://docs.google.com/document/d/{ID}/edit?disco={COMMENT_ID}&usp=comment_email_discussion...)`
+
+If the deep link was not captured from the email, fall back to the document URL
+with a `#heading=` or just the base document edit URL.
 
 ---
 
 **You Replied But Thread Still Open** — unresolved threads where you DID reply
 but the thread remains open. May need follow-up or the other person to close it.
 
-| Document | Who | Status | Date | Link |
-|----------|-----|--------|------|------|
+| # | Document | Who | Status | Date | Link |
+|---|----------|-----|--------|------|------|
+
+Same Link column rules as above — always provide a clickable deep link.
 
 ---
 
