@@ -13,14 +13,24 @@ cross-referencing against the actual comment resolution status per document.
 
 ## Installation
 
-```bash
-claude plugin add /path/to/find-google-mentions
+**From inside a Claude Code session (GUI/TUI):**
+
+```
+/plugin marketplace add bgaldino/find-google-mentions
+/plugin install find-google-mentions@bgaldino-find-google-mentions
 ```
 
-Or from a Git URL (once published to a repo):
+**From the terminal:**
 
 ```bash
-claude plugin add https://github.com/bgaldino/find-google-mentions
+claude plugin marketplace add bgaldino/find-google-mentions
+claude plugin install find-google-mentions@bgaldino-find-google-mentions
+```
+
+After install, reload plugins in your current session:
+
+```
+/reload-plugins
 ```
 
 ## Usage
@@ -64,7 +74,11 @@ Summary: 11 threads need your response across 8 documents.
 
 ## Sharing
 
-To share with a teammate:
-1. Send them this repo (or push it to any Git host)
-2. They run: `claude plugin add <path-or-url>`
-3. Done. `/open-comments` is available in every session.
+Send a teammate these two lines:
+
+```
+/plugin marketplace add bgaldino/find-google-mentions
+/plugin install find-google-mentions@bgaldino-find-google-mentions
+```
+
+They paste them into any Claude Code session. Done.
