@@ -1,0 +1,8 @@
+{
+  "name": "find-google-mentions",
+  "description": "Find unresolved Google Docs/Sheets/Slides comments where you are @mentioned — even docs you never opened",
+  "version": "1.0.0",
+  "author": {
+    "name": "Brian Galdino"
+  }
+}
