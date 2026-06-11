@@ -28,8 +28,9 @@ Gmail: Google sends a notification email for every @mention from
    Use `search_gmail_messages` with `page_size: 25`. Keep calling with the
    returned `page_token` until no more results.
 
-2. **Batch-fetch bodies** — call `get_gmail_messages_content_batch` (max 25 IDs
-   per call). From each email body, extract:
+2. **Batch-fetch bodies** — call `get_gmail_messages_content_batch` with
+   **`format: "full"`** (NEVER "metadata" — you need the body to extract links).
+   Max 25 IDs per call. From each email body, extract:
    - **Document ID** — from the URL pattern:
      - `docs.google.com/document/d/{ID}/...`
      - `docs.google.com/spreadsheets/d/{ID}/...`
@@ -103,6 +104,22 @@ Same Link column rules as above — always provide a clickable deep link.
 
 End with: "**Summary:** X threads need your response across Y documents.
 Z threads are open but you already replied."
+
+---
+
+## HARD RULES — output quality
+
+1. **Every row MUST have a clickable Link.** No exceptions. If you cannot produce
+   a link, the run is broken — go back and re-fetch with `format: "full"`.
+2. **Always use `format: "full"` when fetching email content.** The `"metadata"`
+   format does NOT include the body and you will have no URLs to extract.
+3. **The Link must go to the comment thread, not just the document.** Extract the
+   `disco=` URL from the email body. Pattern:
+   `https://docs.google.com/{type}/d/{ID}/edit?disco={COMMENT_ID}&usp=comment_email_discussion...`
+4. **If the deep link cannot be extracted** (edge case), construct a fallback:
+   `https://docs.google.com/{type}/d/{ID}/edit` — this is acceptable but the
+   deep link is strongly preferred.
+5. **Format links as clickable markdown:** `[Open](url)` — never bare URLs.
 
 ---
 
