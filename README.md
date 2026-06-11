@@ -35,10 +35,51 @@ After install, reload plugins in your current session:
 
 ## Usage
 
+**Inside a Claude Code session:**
+
 ```
 /open-comments         # default: last 30 days
 /open-comments 7       # last 7 days
 /open-comments 90      # last 90 days
+```
+
+**One-shot from the terminal (no interactive session):**
+
+```bash
+claude -p "/open-comments 30"
+```
+
+With a specific model (Sonnet is faster, Opus is more thorough):
+
+```bash
+claude -p "/open-comments 7" --model sonnet
+```
+
+Skip permission prompts (auto-approve all tool calls):
+
+```bash
+claude -p "/open-comments 7" --dangerouslySkipPermissions
+```
+
+Or whitelist only the Google Workspace tools:
+
+```bash
+claude -p "/open-comments 7" \
+  --allowedTools "mcp__plugin_google-workspace_vmcp-google-workspace__search_gmail_messages,mcp__plugin_google-workspace_vmcp-google-workspace__get_gmail_messages_content_batch,mcp__plugin_google-workspace_vmcp-google-workspace__list_document_comments,mcp__plugin_google-workspace_vmcp-google-workspace__list_spreadsheet_comments,mcp__plugin_google-workspace_vmcp-google-workspace__list_presentation_comments"
+```
+
+**Shell alias (optional):**
+
+```bash
+# Add to ~/.zshrc or ~/.bashrc
+alias open-comments='claude -p "/open-comments" --model sonnet'
+```
+
+Then just run:
+
+```bash
+open-comments       # 30-day default
+open-comments 7    # last 7 days
 ```
 
 ## Prerequisites
