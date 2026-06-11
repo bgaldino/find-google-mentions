@@ -1,14 +1,24 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "bgaldino-find-google-mentions",
+  "description": "Find unresolved Google Docs/Sheets/Slides comments where you are @mentioned — even docs you never opened",
   "owner": {
     "name": "Brian Galdino",
-    "url": "https://github.com/bgaldino"
+    "email": "bgaldino@salesforce.com"
   },
   "plugins": [
     {
       "name": "find-google-mentions",
       "description": "Find unresolved Google Docs/Sheets/Slides comments where you are @mentioned — even docs you never opened",
-      "path": "."
+      "author": {
+        "name": "Brian Galdino"
+      },
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/bgaldino/find-google-mentions.git",
+        "path": ".",
+        "ref": "main"
+      }
     }
   ]
 }
